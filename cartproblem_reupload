@@ -1,0 +1,55 @@
+import java.util.*;
+import java.io.*;
+import java.util.Arrays;
+public class Main
+{
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Number of products");
+        int n=sc.nextInt();
+        System.out.println("Enter product names");
+        String[] p=new String[n];
+        for(int i=0;i<n;i++)
+        p[i]=sc.next();
+        System.out.println("unit price");
+        double u[]=new double[n];
+        for(int i=0;i<n;i++)
+        u[i]=sc.nextDouble();
+        System.out.println("Enter GST rate");
+        double g[]=new double[n];
+        for(int i=0;i<n;i++)
+        g[i]=sc.nextDouble();
+        System.out.println("Enter quantity of each product");
+        double q[]=new double[n];
+        for(int i=0;i<n;i++)
+        q[i]=sc.nextDouble();
+        double gstamt[]=new double[n];
+        double totamount[]=new double[n];
+        double totprice[]=new double[n];
+        
+        double sum=0.0;int z=0;
+        for(int i=0;i<n;i++)
+        {
+            if(u[i]>=500)
+            u[i]=u[i]-((5.0/100.0)*u[i]);
+        }
+        for(int i=0;i<n;i++)
+        {
+          totprice[i]=u[i]*q[i];
+            gstamt[i]=((g[i]/100.0)*totprice[i]);
+            sum=sum+(totprice[i]+gstamt[i]);
+        }
+        double max=gstamt[0];
+        for(int i=1;i<n;i++)
+        {
+            if(gstamt[i]>max)
+            {
+            max=gstamt[i];
+            z=i;
+            }
+        }
+        System.out.println("Product whuch has max gst "+p[z]);
+        System.out.println("Total amount to be paid"+sum);
+    }
+}
